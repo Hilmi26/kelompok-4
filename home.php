@@ -77,12 +77,14 @@ include "config.php";
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Kode Buku</th>
-                        <th>Judul Buku</th>
-                        <th>Kategori Buku</th>
-                        <th>Pengarang Buku</th>
-                        <th>Penerbit Buku</th>
-                        <th>Jumlah Halaman</th>
+                        <th>Penulis</th>
+                        <th>Tahun</th>
+                        <th>Judul</th>
+                        <th>Kota</th>
+                        <th>Penerbit</th>
+                        <th>Cover</th>
+                        <th>Sinopsis</th>
+                        <th>Stok</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -115,12 +117,14 @@ include "config.php";
                     ?>
                         <tr>
                             <td><?= $no ?></td>
-                            <td><?= $data['kode_buku'] ?></td>
-                            <td><?= $data['judul_buku'] ?></td>
-                            <td><?= $data['kategori_buku'] ?></td>
-                            <td><?= $data['pengarang_buku'] ?></td>
-                            <td><?= $data['penerbit_buku'] ?></td>
-                            <td><?= $data['jumlah_halaman'];  ?></td>
+                            <td><?= $data['penulis'] ?></td>
+                            <td><?= $data['tahun'] ?></td>
+                            <td><?= $data['judul'] ?></td>
+                            <td><?= $data['kota'] ?></td>
+                            <td><?= $data['penerbit'] ?></td>
+                            <td><?= $data['cover']; ?></td>
+                            <td><?= $data['sinopsis']; ?></td>
+                            <td><?= $data['stok']; ?></td>
                             <td>
                                 <a class="btn btn-warning" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                             </td>
