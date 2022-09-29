@@ -57,8 +57,6 @@ if (isset($_POST['submit'])) {
             <p class="text-center">Belum punya akun? <a href="register.php">Daftar</a></p>
         </div>
     </div>
-
-
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
