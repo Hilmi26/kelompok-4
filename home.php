@@ -5,6 +5,11 @@ include "config.php";
 // if(!$_SESSION['level']){
 //     header('location:index.php');
 // }
+
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("location:index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +31,7 @@ include "config.php";
             <form class="d-flex" role="" method="POST">
                 <button class="btn btn-outline-light" type="submit" name="logout">Logout</button>
             </form>
+        </div>
     </nav>
     <div class="d-flex" id="wrapper">
         <!-- SIDEBAR -->
@@ -126,10 +132,14 @@ include "config.php";
                             <td><?= $data['sinopsis']; ?></td>
                             <td><?= $data['stok']; ?></td>
                             <td>
-                                <a class="btn btn-warning" href="edit.php?id=<?php echo $data['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="btn btn-warning" href="edit.php?id=<?php echo $data['id']; ?>">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="delete.php?id=<?php echo $data['id']; ?>"><i class="fa-solid fa-trash"></i></a>
+                                <a class="btn btn-danger" href="delete.php?id=<?php echo $data['id']; ?>">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php
@@ -140,15 +150,6 @@ include "config.php";
             </table>
         </div>
     </div>
-    </div>
-
-
-
-
-
-
-
-
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 

@@ -2,25 +2,25 @@
 
 session_start();
 include "config.php";
-if($_SESSION['username']){
+if ($_SESSION['username']) {
     header('location:home.php');
 }
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    
+
     $sql = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
     $data = mysqli_fetch_assoc($sql);
     // var_dump($data);die;
-    if($data['username']){
-        if($data['password'] == $password){
+    if ($data['username']) {
+        if ($data['password'] == $password) {
             $_SESSION['username'] = $username;
             echo "<script>alert('Login Berhasil');
             window.location.replace('home.php');</script>";
-        }else{
+        } else {
             echo "<script>alert('Password Salah')</script>";
         }
-    }else{
+    } else {
         echo "<script>alert('Username tidak terdaftar')</script>";
     }
 }
@@ -50,11 +50,11 @@ if (isset($_POST['submit'])) {
                     <label for="" class="form-label">Password</label>
                     <input type="password" class="form-control" id="exampleInputEmail1" name="password">
                 </div>
-                <div class="text-center">
+                <div class="text-center d-grid">
                     <button type="submit" name="submit" class="btn btn-primary">Login</button>
                 </div>
             </form>
-            <p>belum punya akun? </p><a href="regis.php">Daftar Disini</a>
+            <p class="text-center">Belum punya akun? <a href="register.php">Daftar</a></p>
         </div>
     </div>
 
@@ -63,4 +63,3 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
-

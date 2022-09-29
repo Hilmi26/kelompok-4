@@ -1,5 +1,5 @@
 <?php
- include "config.php"
+include "config.php"
 
 ?>
 
@@ -42,6 +42,7 @@
 
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
 
 <?php
@@ -51,16 +52,15 @@ if (isset($_POST['submit'])) {
     $cp = $_POST['cpassword'];
 
     $valid = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE username='$username'"));
-    if($valid > 0){
+    if ($valid > 0) {
         echo "<script>alert('Username telah digunakan!')</script>";
     } else if ($cp != $password) {
         echo "<script>alert('Password tidak sesuai!')</script>";
     } else {
         $query2 = mysqli_query($conn, "INSERT INTO users(username, password, level) VALUES('$username', '$password','siswa')");
     }
-        if ($query2) {
-             header('location:index.php');
-        }
-    
+    if ($query2) {
+        header('location:index.php');
     }
+}
 ?>
