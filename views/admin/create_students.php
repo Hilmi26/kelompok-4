@@ -1,22 +1,18 @@
 <!-- Zacky -->
 
 <?php
-include '../../controllers/admin/function_staff.php';
+include '../../controllers/admin/function_students.php';
 
-$query = mysqli_query($conn, "SELECT * FROM petugas where nip = $_GET[update];");
-$data = mysqli_fetch_array($query);
+if (isset($_POST['submit'])) {
 
-if (isset($_POST['update'])) {
-
-    if (update($_POST) > 0) {
-        echo "<script>alert('Data berhasil diubah');
-		document.location='table_staff.php'</script>";
+    if (create($_POST) > 0) {
+        echo "<script>alert('Data telah tersimpan');
+		document.location='table_students.php'</script>";
     } else {
-        echo "<script>alert('Gagal!');
-        document.location='table_staff.php'</script>";
+        echo "<script>alert('Gagal');
+		document.location='table_students.php'</script>";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -193,22 +189,22 @@ if (isset($_POST['update'])) {
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Petugas /</span> Edit Petugas
+                            <span class="text-muted fw-light">Siswa /</span> Tambah Siswa
                         </h4>
                         <!-- Bordered Table -->
                         <div class="card">
                             <div class="card-body">
                                 <form action="" method="post">
                                     <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">NIP</label>
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">NIS</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="nip" value="<?php echo $data["nip"]; ?>" required>
+                                            <input class="form-control" type="number" name="nis">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Nama</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="nama" value="<?php echo $data["nama"]; ?>" required>
+                                            <input class="form-control" type="text" name="nama">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -224,17 +220,22 @@ if (isset($_POST['update'])) {
                                     <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Alamat</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="alamat" value="<?php echo $data["alamat"]; ?>" required>
+                                            <input class="form-control" type="text" name="alamat">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Password</label>
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Kelas</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="password" value="<?php echo $data["password"]; ?>" required>
+                                            <select class="form-select" name="id_kelas">
+                                                <option disabled selected> Pilih </option>
+                                                <option value="1">IX</option>
+                                                <option value="2">X</option>
+                                                <option value="3">XI</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="mt-4 ms-auto">
-                                        <button type="submit" name="update" class="btn btn-outline-primary">Simpan</button>
+                                        <button type="submit" name="submit" class="btn btn-outline-primary">Tambah</button>
                                     </div>
                                 </form>
                             </div>

@@ -1,6 +1,6 @@
 <!-- Zacky -->
 
-<?php 
+<?php
 include '../../controllers/admin/function_staff.php'
 ?>
 
@@ -176,98 +176,98 @@ include '../../controllers/admin/function_staff.php'
 
 				<!-- Content wrapper -->
 				<div class="content-wrapper">
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Petugas /</span> Data Petugas
-                        </h4>
-                        <!-- Bordered Table -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="mb-4">
-                                    <a href="create.php" class="btn btn-outline-primary">Tambah Data</a>
-                                </div>
-                                <div class="table-responsive text-nowrap">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>NIP</th>
-                                                <th>Nama</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>Alamat</th>
-                                                <th>Password</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
+					<div class="container-xxl flex-grow-1 container-p-y">
+						<h4 class="fw-bold py-3 mb-4">
+							<span class="text-muted fw-light">Petugas /</span> Data Petugas
+						</h4>
+						<!-- Bordered Table -->
+						<div class="card">
+							<div class="card-body">
+								<div class="mb-4">
+									<a href="create_staff.php" class="btn btn-outline-primary">Tambah Data</a>
+								</div>
+								<div class="table-responsive text-nowrap">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>NIP</th>
+												<th>Nama</th>
+												<th>Jenis Kelamin</th>
+												<th>Alamat</th>
+												<th>Password</th>
+												<th>Aksi</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
 											$ambil = display('petugas');
-                                            if (mysqli_num_rows($ambil)) {
-											while ($data = mysqli_fetch_array($ambil)) {
+											if (mysqli_num_rows($ambil)) {
+												while ($data = mysqli_fetch_array($ambil)) {
 											?>
-                                                <tr>
-                                                    <td><?= $data['nip'] ?></td>
-                                                    <td><?= $data['nama'] ?></td>
-                                                    <td><?= $data['jenis_kelamin'] ?></td>
-                                                    <td><?= $data['alamat'] ?></td>
-                                                    <td><?= $data['password'] ?></td>
-                                                    <td colspan="2">
-                                                        <a class="btn btn-icon btn-outline-warning" href="update.php?id=<?php echo $data['nip']; ?>">
-                                                            <i class='bx bx-pencil'></i>
-                                                        </a>
-                                                        <a class="btn btn-icon btn-outline-danger" href="delete.php?">
-                                                            <i class='bx bx-trash'></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            	<?php
+													<tr>
+														<td><?= $data['nip'] ?></td>
+														<td><?= $data['nama'] ?></td>
+														<td><?= $data['jenis_kelamin'] ?></td>
+														<td><?= $data['alamat'] ?></td>
+														<td><?= $data['password'] ?></td>
+														<td colspan="2">
+															<a class="btn btn-icon btn-outline-warning" href="update_staff.php?update=<?php echo $data['nip']; ?>">
+																<i class='bx bx-pencil'></i>
+															</a>
+															<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['nip']; ?>">
+																<i class='bx bx-trash'></i>
+															</a>
+														</td>
+													</tr>
+											<?php
+												}
 											}
-										}
-										?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-						<!--/ Striped Rows -->
-
-						<hr class="my-5" />
-
-					</div>
-					<!-- / Content -->
-
-					<!-- Footer -->
-					<footer class="content-footer footer bg-footer-theme">
-						<div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-							<div class="mb-2 mb-md-0">
-								©
-								<script>
-									document.write(new Date().getFullYear());
-								</script>
-								, made with ❤️ by
-								<a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-							</div>
-							<div>
-								<a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-								<a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-								<a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
-
-								<a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Support</a>
+											?>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
-					</footer>
-					<!-- / Footer -->
+					</div>
+					<!--/ Striped Rows -->
 
-					<div class="content-backdrop fade"></div>
+					<hr class="my-5" />
+
 				</div>
-				<!-- Content wrapper -->
-			</div>
-			<!-- / Layout page -->
-		</div>
+				<!-- / Content -->
 
-		<!-- Overlay -->
-		<div class="layout-overlay layout-menu-toggle"></div>
+				<!-- Footer -->
+				<footer class="content-footer footer bg-footer-theme">
+					<div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+						<div class="mb-2 mb-md-0">
+							©
+							<script>
+								document.write(new Date().getFullYear());
+							</script>
+							, made with ❤️ by
+							<a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+						</div>
+						<div>
+							<a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+							<a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+							<a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
+
+							<a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Support</a>
+						</div>
+					</div>
+				</footer>
+				<!-- / Footer -->
+
+				<div class="content-backdrop fade"></div>
+			</div>
+			<!-- Content wrapper -->
+		</div>
+		<!-- / Layout page -->
+	</div>
+
+	<!-- Overlay -->
+	<div class="layout-overlay layout-menu-toggle"></div>
 	</div>
 	<!-- / Layout wrapper -->
 

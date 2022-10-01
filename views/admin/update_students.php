@@ -1,22 +1,21 @@
 <!-- Zacky -->
 
 <?php
-include '../../controllers/admin/function_staff.php';
+include '../../controllers/admin/function_students.php';
 
-$query = mysqli_query($conn, "SELECT * FROM petugas where nip = $_GET[update];");
+$query = mysqli_query($conn, "SELECT * FROM siswa where nis = $_GET[update];");
 $data = mysqli_fetch_array($query);
 
 if (isset($_POST['update'])) {
 
     if (update($_POST) > 0) {
         echo "<script>alert('Data berhasil diubah');
-		document.location='table_staff.php'</script>";
+		document.location='table_students.php'</script>";
     } else {
         echo "<script>alert('Gagal!');
-        document.location='table_staff.php'</script>";
+        document.location='table_students.php'</script>";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -193,16 +192,16 @@ if (isset($_POST['update'])) {
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Petugas /</span> Edit Petugas
+                            <span class="text-muted fw-light">Siswa /</span> Data Siswa
                         </h4>
                         <!-- Bordered Table -->
                         <div class="card">
                             <div class="card-body">
                                 <form action="" method="post">
                                     <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">NIP</label>
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">NIS</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="nip" value="<?php echo $data["nip"]; ?>" required>
+                                            <input class="form-control" type="number" name="nis" value="<?php echo $data["nis"]; ?>" required>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -228,9 +227,14 @@ if (isset($_POST['update'])) {
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Password</label>
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Kelas</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="password" value="<?php echo $data["password"]; ?>" required>
+                                            <select class="form-select" name="id_kelas">
+                                                <option disabled selected> Pilih </option>
+                                                <option value="1">IX</option>
+                                                <option value="2">X</option>
+                                                <option value="3">XI</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="mt-4 ms-auto">

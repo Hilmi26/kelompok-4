@@ -184,7 +184,7 @@ include '../../controllers/admin/function_students.php'
 						<div class="card">
 							<div class="card-body">
 								<div class="mb-4">
-									<a href="create.php" class="btn btn-outline-primary">Tambah Data</a>
+									<a href="create_students.php" class="btn btn-outline-primary">Tambah Data</a>
 								</div>
 								<div class="table-responsive text-nowrap">
 									<table class="table table-bordered">
@@ -199,26 +199,26 @@ include '../../controllers/admin/function_students.php'
 											</tr>
 										</thead>
 										<tbody>
-										<?php
-                                            $ambil = display('siswa, kelas', 'WHERE', 'siswa.id_kelas', 'kelas.id_kelas');
-                                            while ($data = mysqli_fetch_assoc($ambil)) {
-                                            ?>
-                                                <tr>
-                                                    <td><?= $data['nis'] ?></td>
-                                                    <td><?= $data['nama'] ?></td>
-                                                    <td><?= $data['jenis_kelamin'] ?></td>
-                                                    <td><?= $data['alamat'] ?></td>
-                                                    <td><?= $data['nama_kelas'] ?></td>
-                                                    <td colspan="2">
-                                                        <a class="btn btn-icon btn-outline-warning" href="update.php?">
-                                                            <i class='bx bx-pencil'></i>
-                                                        </a>
-                                                        <a class="btn btn-icon btn-outline-danger" href="delete.php?">
-                                                            <i class='bx bx-trash'></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
+											<?php
+											$ambil = display('siswa, kelas', 'WHERE', 'siswa.id_kelas', 'kelas.id_kelas');
+											while ($data = mysqli_fetch_assoc($ambil)) {
+											?>
+												<tr>
+													<td><?= $data['nis'] ?></td>
+													<td><?= $data['nama'] ?></td>
+													<td><?= $data['jenis_kelamin'] ?></td>
+													<td><?= $data['alamat'] ?></td>
+													<td><?= $data['nama_kelas'] ?></td>
+													<td colspan="2">
+														<a class="btn btn-icon btn-outline-warning" href="update_students.php?update=<?php echo $data['nis']; ?>">
+															<i class='bx bx-pencil'></i>
+														</a>
+														<a class="btn btn-icon btn-outline-danger" href="delete_students.php?nis=<?php echo $data['nis']; ?>">
+															<i class='bx bx-trash'></i>
+														</a>
+													</td>
+												</tr>
+											<?php } ?>
 										</tbody>
 									</table>
 								</div>
