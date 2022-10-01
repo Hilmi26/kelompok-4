@@ -1,4 +1,4 @@
-<!-- Hilmi Tsaqif -->
+<!-- Hilmi Tsaqif - membuat function crud buku-->
 <?php 
 include '../../config/connection.php';
 

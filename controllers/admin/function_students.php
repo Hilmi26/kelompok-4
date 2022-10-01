@@ -1,7 +1,7 @@
 <?php 
 include '../../config/connection.php';
 
-// Hilmi Tsaqif
+// Hilmi Tsaqif - membuat function menampilkan data dari tabel siswa
 function display($table1, $table2, $id1, $id2){
 	global $conn;
 
@@ -10,6 +10,9 @@ function display($table1, $table2, $id1, $id2){
 
 	return $cek;
 }
+
+// Zacky - membuat function crud staff
+
 
 
 ?>

@@ -1,8 +1,7 @@
 <!-- Hilmi Tsaqif -->
+
 <?php
 include '../../controllers/admin/function_books.php';
-
-
 ?>
 
 <!DOCTYPE html>
