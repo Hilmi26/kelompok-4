@@ -1,18 +1,18 @@
 # kelompok-4
-
 Actors :
 
-Admin
-Manage all features (crud)
-Officer
-Student Crud
-Loan Process
-Return Process
-CRUD Loans & Returns (Lending History)
-CRUD Books
-Student
-See the borrowing history of the student
-Viewing Books
+1 Admin
+- Manage all features (crud)
+2 Officer
+- Student Crud
+- Loan Process
+- Return Process
+- CRUD Loans & Returns (Lending History)
+- CRUD Books
+3 Student
+- See the borrowing history of the student
+- Viewing Books
+
 Plot :
 
 As an admin, you can manage all the data in the database.
