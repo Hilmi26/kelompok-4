@@ -1,15 +1,15 @@
 # kelompok-4
 Actors :
 
-1 Admin
+1. Admin
 - Manage all features (crud)
-2 Officer
+2. Officer
 - Student Crud
 - Loan Process
 - Return Process
 - CRUD Loans & Returns (Lending History)
 - CRUD Books
-3 Student
+3. Student
 - See the borrowing history of the student
 - Viewing Books
 
