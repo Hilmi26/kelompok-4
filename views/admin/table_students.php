@@ -1,7 +1,12 @@
 <!-- Zacky -->
 
 <?php
-include '../../controllers/admin/function_students.php'
+session_start();
+include '../../controllers/admin/function_students.php';
+
+if (!$_SESSION) {
+	header('location:../../index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +118,7 @@ include '../../controllers/admin/function_students.php'
 							<li class="nav-item navbar-dropdown dropdown-user dropdown">
 								<a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
 									<div class="avatar avatar-online">
-										<img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+										<img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
 									</div>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end">
@@ -122,11 +127,11 @@ include '../../controllers/admin/function_students.php'
 											<div class="d-flex">
 												<div class="flex-shrink-0 me-3">
 													<div class="avatar avatar-online">
-														<img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+														<img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
 													</div>
 												</div>
 												<div class="flex-grow-1">
-													<span class="fw-semibold d-block">John Doe</span>
+													<span class="fw-semibold d-block">Jimmy</span>
 													<small class="text-muted">Admin</small>
 												</div>
 											</div>
@@ -205,7 +210,7 @@ include '../../controllers/admin/function_students.php'
 											?>
 												<tr>
 													<td><?= $data['nis'] ?></td>
-													<td><?= $data['nama'] ?></td>
+													<td><?= $data['nama_siswa'] ?></td>
 													<td><?= $data['jenis_kelamin'] ?></td>
 													<td><?= $data['alamat'] ?></td>
 													<td><?= $data['nama_kelas'] ?></td>

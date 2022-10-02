@@ -24,7 +24,7 @@ function create($data)
 	$id_kelas = $data['id_kelas'];
 
 	$query_insert = "INSERT INTO siswa
-	(nis, nama, jenis_kelamin, alamat ,id_kelas) VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$id_kelas')";
+	(nis, nama_siswa, jenis_kelamin, alamat ,id_kelas) VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$id_kelas')";
 
 	mysqli_query($conn, $query_insert);
 
@@ -37,7 +37,7 @@ function update($data)
 
 	$query_update = "UPDATE siswa SET
 	nis = '$data[nis]', 
-	nama = '$data[nama]', 
+	nama_siswa = '$data[nama]', 
 	jenis_kelamin = '$data[jenis_kelamin]', 
 	alamat = '$data[alamat]',
 	id_kelas = '$data[id_kelas]'

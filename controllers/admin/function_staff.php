@@ -24,7 +24,7 @@ function create($data)
 	$password = $data['password'];
 
 	$query_insert = "INSERT INTO petugas
-	(nip, nama, jenis_kelamin, alamat ,password) VALUES ('$nip', '$nama', '$jenis_kelamin', '$alamat', '$password')";
+	(nip, nama_petugas, jenis_kelamin, alamat ,password) VALUES ('$nip', '$nama', '$jenis_kelamin', '$alamat', '$password')";
 
 	mysqli_query($conn, $query_insert);
 
@@ -37,7 +37,7 @@ function update($data)
 
 	$query_update = "UPDATE petugas SET
 	nip = '$data[nip]', 
-	nama = '$data[nama]', 
+	nama_petugas = '$data[nama]', 
 	jenis_kelamin = '$data[jenis_kelamin]', 
 	alamat = '$data[alamat]',
 	password = '$data[password]'

@@ -1,7 +1,9 @@
-<!-- Zacky -->
+<!-- Hilmi -->
 
 <?php
-include '../../controllers/admin/function_staff.php'
+// include '../../controllers/admin/function_staff.php'
+include '../../config/connection.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +13,7 @@ include '../../controllers/admin/function_staff.php'
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-	<title>Dashboard - Library Admin</title>
+	<title>Dashboard - Library Staff</title>
 
 	<meta name="description" content="" />
 
@@ -66,27 +68,27 @@ include '../../controllers/admin/function_staff.php'
 				<div class="menu-inner-shadow"></div>
 				<ul class="menu-inner py-1">
 					<li class="menu-item">
-						<a href="admin_home.php" class="menu-link">
+						<a href="staff_home.php" class="menu-link">
 							<i class="menu-icon tf-icons bx bx-home-circle"></i>
 							<div data-i18n="Analytics">Dashboard</div>
 						</a>
 					</li>
 					<li class="menu-item">
-						<a href="table_books.php" class="menu-link">
+						<a href="peminjaman.php" class="menu-link">
 							<i class="menu-icon tf-icons bx bx-book"></i>
-							<div data-i18n="Analytics">Buku</div>
+							<div data-i18n="Analytics">Peminjaman</div>
 						</a>
 					</li>
 					<li class="menu-item">
-						<a href="table_staff.php" class="menu-link ">
+						<a href="pengembalian.php" class="menu-link ">
 							<i class="menu-icon tf-icons bx bx-user-pin"></i>
-							<div data-i18n="Layouts">Petugas</div>
+							<div data-i18n="Layouts">Pengambalian</div>
 						</a>
 					</li>
 					<li class="menu-item">
-						<a href="table_students.php" class="menu-link">
+						<a href="history.php" class="menu-link">
 							<i class="menu-icon tf-icons bx bx-user"></i>
-							<div data-i18n="Analytics">Siswa</div>
+							<div data-i18n="Analytics">History Transaksi</div>
 						</a>
 					</li>
 				</ul>
@@ -178,43 +180,105 @@ include '../../controllers/admin/function_staff.php'
 				<div class="content-wrapper">
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">Petugas /</span> Data Petugas
+							<span class="text-muted fw-light">Transaksi /</span> Data Transaksi
 						</h4>
 						<!-- Bordered Table -->
 						<div class="card">
 							<div class="card-body">
-								<div class="mb-4">
-									<a href="create_staff.php" class="btn btn-outline-primary">Tambah Data</a>
+								<h4>Detail Peminjaman</h4>
+								<div class="d-flex">
+									<div class="table-responsive text-nowrap">
+										<table class="table table-borderless">
+											<thead>
+												<tr>
+													<th> </th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$query = mysqli_query($conn, "SELECT peminjaman.id_peminjaman,
+											siswa.nis,
+											siswa.nama_siswa,
+											kelas.nama_kelas,
+											petugas.nama_petugas,
+											peminjaman.tgl_peminjaman,
+											peminjaman.tgl_pengembalian
+											FROM peminjaman, siswa, petugas, kelas 
+											WHERE peminjaman.id_siswa = siswa.nis AND
+											peminjaman.id_petugas = petugas.nip
+											AND siswa.id_kelas = kelas.id_kelas");
+												// $ambil = display('petugas');
+												if (mysqli_num_rows($query)) {
+													while ($data = mysqli_fetch_array($query)) {
+												?>
+														<tr>
+															<td><label>ID Peminjaman</label></td>
+															<td>:  <?= $data['id_peminjaman'] ?></td>
+														</tr>
+														<tr>
+															<td><label>NIS</label></td>
+															<td>:  <?= $data['nis'] ?></td>
+														</tr>
+														<tr>
+															<td><label>Nama</label></td>
+															<td>:  <?= $data['nama_siswa'] ?></td>
+														</tr>
+														<tr>
+															<td><label>Kelas</label></td>
+															<td>:  <?= $data['nama_kelas'] ?></td>
+														</tr>
+														
+												<?php
+													}
+												}
+												?>
+											</tbody>
+										</table>
+									</div>
+
 								</div>
-								<div class="table-responsive text-nowrap">
+								<div class="table-responsive text-nowrap mt-3">
 									<table class="table table-bordered">
 										<thead>
 											<tr>
-												<th>NIP</th>
-												<th>Nama</th>
-												<th>Jenis Kelamin</th>
-												<th>Alamat</th>
-												<th>Password</th>
+												<th>ID</th>
+												<th>Cover</th>
+												<th>Judul Buku</th>
+												<th>Jumlah Buku</th>
+												<th>TGL Peminjaman</th>
+												<th>TGL Pengembalian</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
-											$ambil = display('petugas');
-											if (mysqli_num_rows($ambil)) {
-												while ($data = mysqli_fetch_array($ambil)) {
+											$query = mysqli_query($conn, "SELECT detail_peminjaman.id_detail_peminjaman,
+											buku.cover,
+											buku.judul,
+											detail_peminjaman.kuantitas,
+											peminjaman.tgl_peminjaman,
+											peminjaman.tgl_pengembalian
+											FROM detail_peminjaman, buku, peminjaman
+											WHERE detail_peminjaman.id_buku = buku.id_buku
+											AND detail_peminjaman.id_peminjaman = peminjaman.id_peminjaman 
+											 
+											");
+											// $ambil = display('petugas');
+											if (mysqli_num_rows($query)) {
+												while ($data = mysqli_fetch_array($query)) {
 											?>
 													<tr>
-														<td><?= $data['nip'] ?></td>
-														<td><?= $data['nama_petugas'] ?></td>
-														<td><?= $data['jenis_kelamin'] ?></td>
-														<td><?= $data['alamat'] ?></td>
-														<td><?= $data['password'] ?></td>
+														<td><?= $data['id_detail_peminjaman'] ?></td>
+														<td><?= $data['cover'] ?></td>
+														<td><?= $data['judul'] ?></td>
+														<td><?= $data['kuantitas'] ?></td>
+														<td><?= $data['tgl_peminjaman'] ?></td>
+														<td><?= $data['tgl_pengembalian'] ?></td>
 														<td colspan="2">
-															<a class="btn btn-icon btn-outline-warning" href="update_staff.php?update=<?php echo $data['nip']; ?>">
-																<i class='bx bx-pencil'></i>
+															<a class="btn btn-icon btn-outline-warning" href="update_staff.php?id=<?php echo $data['id_detail_peminjaman']; ?>">
+																<i class='bx bx-detail'></i>
 															</a>
-															<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['nip']; ?>">
+															<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['id_detail_peminjaman']; ?>">
 																<i class='bx bx-trash'></i>
 															</a>
 														</td>

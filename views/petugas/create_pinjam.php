@@ -1,22 +1,18 @@
-<!-- Zacky -->
+<!-- Hilmi -->
 
 <?php
-include '../../controllers/admin/function_staff.php';
+include '../../controllers/admin/function_books.php';
 
-$query = mysqli_query($conn, "SELECT * FROM petugas where nip = $_GET[update];");
-$data = mysqli_fetch_array($query);
+if (isset($_POST['submit'])) {
 
-if (isset($_POST['update'])) {
-
-    if (update($_POST) > 0) {
-        echo "<script>alert('Data berhasil diubah');
-		document.location='table_staff.php'</script>";
+    if (create($_POST) > 0) {
+        echo "<script>alert('Data telah tersimpan');
+		document.location='table_books.php'</script>";
     } else {
-        echo "<script>alert('Gagal!');
-        document.location='table_staff.php'</script>";
+        echo "<script>alert('Gagal');
+		document.location='table_books.php'</script>";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -66,46 +62,46 @@ if (isset($_POST['update'])) {
             <!-- Menu -->
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-                <div class="app-brand demo ">
-                    <a href="index.html" class="app-brand-link">
-                        <span>
-                            <i class="menu-icon tf-icons bx bx-book-content"></i>
-                        </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
-                    </a>
+				<div class="app-brand demo ">
+					<a href="index.html" class="app-brand-link">
+						<span>
+							<i class="menu-icon tf-icons bx bx-book-content"></i>
+						</span>
+						<span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+					</a>
 
-                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
-                    </a>
-                </div>
-                <div class="menu-inner-shadow"></div>
-                <ul class="menu-inner py-1">
-                    <li class="menu-item">
-                        <a href="admin_home.php" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Analytics">Dashboard</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="table_books.php" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-book"></i>
-                            <div data-i18n="Analytics">Buku</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="table_staff.php" class="menu-link ">
-                            <i class="menu-icon tf-icons bx bx-user-pin"></i>
-                            <div data-i18n="Layouts">Petugas</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="table_students.php" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div data-i18n="Analytics">Siswa</div>
-                        </a>
-                    </li>
-                </ul>
-            </aside>
+					<a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+						<i class="bx bx-chevron-left bx-sm align-middle"></i>
+					</a>
+				</div>
+				<div class="menu-inner-shadow"></div>
+				<ul class="menu-inner py-1">
+					<li class="menu-item">
+						<a href="staff_home.php" class="menu-link">
+							<i class="menu-icon tf-icons bx bx-home-circle"></i>
+							<div data-i18n="Analytics">Dashboard</div>
+						</a>
+					</li>
+					<li class="menu-item">
+						<a href="peminjaman.php" class="menu-link">
+							<i class="menu-icon tf-icons bx bx-book"></i>
+							<div data-i18n="Analytics">Peminjaman</div>
+						</a>
+					</li>
+					<li class="menu-item">
+						<a href="pengembalian.php" class="menu-link ">
+							<i class="menu-icon tf-icons bx bx-user-pin"></i>
+							<div data-i18n="Layouts">Pengambalian</div>
+						</a>
+					</li>
+					<li class="menu-item">
+						<a href="table_students.php" class="menu-link">
+							<i class="menu-icon tf-icons bx bx-user"></i>
+							<div data-i18n="Analytics">History Transaksi</div>
+						</a>
+					</li>
+				</ul>
+			</aside>
             <!-- / Menu -->
 
             <!-- Layout container -->
@@ -193,48 +189,68 @@ if (isset($_POST['update'])) {
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Petugas /</span> Edit Petugas
+                            <span class="text-muted fw-light">Books /</span> Add Data Book
                         </h4>
                         <!-- Bordered Table -->
                         <div class="card">
                             <div class="card-body">
                                 <form action="" method="post">
                                     <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">NIP</label>
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">ID Peminjaman</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="nip" value="<?php echo $data["nip"]; ?>" required>
+                                            <input class="form-control" type="text" name="id_peminjaman">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Nama</label>
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Judul Buku</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="nama" value="<?php echo $data["nama_petugas"]; ?>" required>
+                                            <input class="form-control" type="number" name="nis">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Jenis Kelamin</label>
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">NIS</label>
                                         <div class="col-md-10">
-                                            <select class="form-select" name="jenis_kelamin">
-                                                <option selected disabled>Pilih</option>
-                                                <option value="L">Laki-laki</option>
-                                                <option value="P">Perempuan</option>
-                                            </select>
+                                            <input class="form-control" type="number" name="nis">
                                         </div>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Alamat</label>
+									<div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Nama Siswa</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="alamat" value="<?php echo $data["alamat"]; ?>" required>
+                                            <input class="form-control" type="text" name="nama_siswa">
                                         </div>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Password</label>
+									<div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Nama Petugas</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="password" value="<?php echo $data["password"]; ?>" required>
+                                            <input class="form-control" type="text" name="nama_petugas">
                                         </div>
                                     </div>
-                                    <div class="mt-4 ms-auto">
-                                        <button type="submit" name="update" class="btn btn-outline-primary">Simpan</button>
+									<div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Penerbit</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="penerbit">
+                                        </div>
+                                    </div>
+									<div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">TGL Peminjaman</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="image" name="tgl_peminjaman">
+                                        </div>
+                                    </div>
+									<div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">TGL Pengembalian</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="tgl_pengembalian">
+                                        </div>
+                                    </div>
+									<div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Jumlah</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="number" name="stok">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 me-auto">
+                                        <button type="submit" name="submit" class="btn btn-outline-primary">Tambah</button>
                                     </div>
                                 </form>
                             </div>

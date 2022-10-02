@@ -1,7 +1,13 @@
 <!-- Hilmi Tsaqif -->
 
 <?php
+session_start();
 include '../../controllers/admin/function_books.php';
+
+if (!$_SESSION) {
+	header('location:../../index.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +22,7 @@ include '../../controllers/admin/function_books.php';
 	<meta name="description" content="" />
 
 	<!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
 
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,22 +30,22 @@ include '../../controllers/admin/function_books.php';
 	<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
 	<!-- Icons. Uncomment required icon fonts -->
-	<link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
+	<link rel="stylesheet" href="../../../assets/vendor/fonts/boxicons.css" />
 
 	<!-- Core CSS -->
-	<link rel="stylesheet" href="../../assets/vendor/css/core.css" class="template-customizer-core-css" />
-	<link rel="stylesheet" href="../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-	<link rel="stylesheet" href="../../assets/css/demo.css" />
+	<link rel="stylesheet" href="../../../assets/vendor/css/core.css" class="template-customizer-core-css" />
+	<link rel="stylesheet" href="../../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+	<link rel="stylesheet" href="../../../assets/css/demo.css" />
 
 	<!-- Vendors CSS -->
-	<link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+	<link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-	<link rel="stylesheet" href="../../assets/vendor/libs/apex-charts/apex-charts.css" />
+	<link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
 
 	<!-- Helpers -->
-	<script src="../../assets/vendor/js/helpers.js"></script>
+	<script src="../../../assets/vendor/js/helpers.js"></script>
 
-	<script src="../../assets/js/config.js"></script>
+	<script src="../../../assets/js/config.js"></script>
 </head>
 
 <body>
@@ -110,7 +116,7 @@ include '../../controllers/admin/function_books.php';
 							<li class="nav-item navbar-dropdown dropdown-user dropdown">
 								<a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
 									<div class="avatar avatar-online">
-										<img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+										<img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
 									</div>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-end">
@@ -119,11 +125,11 @@ include '../../controllers/admin/function_books.php';
 											<div class="d-flex">
 												<div class="flex-shrink-0 me-3">
 													<div class="avatar avatar-online">
-														<img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+														<img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
 													</div>
 												</div>
 												<div class="flex-grow-1">
-													<span class="fw-semibold d-block">John Doe</span>
+													<span class="fw-semibold d-block">Jimmy</span>
 													<small class="text-muted">Admin</small>
 												</div>
 											</div>
@@ -177,131 +183,138 @@ include '../../controllers/admin/function_books.php';
 
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Books /</span> Data Books</h4>
-						<div class="row mb-3">
-							<div class="col">
-								<a href="create.php" class="btn btn-success ">Tambah Data</a>
-							</div>
-							<div class="col">
-								<form class="d-flex" role="search" method="POST" action="">
-									<input class="form-control me-2" type="text" name="search" placeholder="Masukkan Keyword Pencarian">
-									<input class="btn btn-info" type="submit" name="cari" value="Cari"></input>
-									<a href="index.php" class="btn btn-warning ms-2">Refresh</a>
-								</form>
-							</div>
-						</div>
+
 						<!-- Striped Rows -->
 						<div class="card">
-							<h3 class="card-header">Books Table</h3>
-							<div class="table-responsive text-nowrap">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th>ID</th>
-											<th class="text-center">Aksi</th>
-											<th>Cover</th>
-											<th>Penulis</th>
-											<th>Tahun</th>
-											<th>Judul</th>
-											<th>Kota</th>
-											<th>Penerbit</th>
-											<th>Sinopsis</th>
-											<th>Stok</th>
-										</tr>
-									</thead>
-									<tbody class="table-border-bottom-0">
-
-										<?php
-										$batas = 10; //Batas data yang akan di munculkan
-
-										//proses mendapatkan url halaman
-										if (isset($_GET['halaman'])) {
-											$halaman = (int)$_GET['halaman'];
-										} else {
-											$halaman = 1;
-										}
-
-
-										if ($halaman > 1) {
-											$halaman_awal = ($halaman * $batas) - $batas;
-										} else {
-											$halaman_awal = 0;
-										}
-										$get_book = display('buku', 'limit ' . $halaman_awal . ',' . $batas);
-
-										$data = mysqli_query($conn, "SELECT * FROM buku");
-										$jumlah_data = mysqli_num_rows($data);
-										$total_halaman = ceil($jumlah_data / $batas);
-
-										if (mysqli_num_rows($get_book)) {
-											while ($data = mysqli_fetch_array($get_book)) {
-										?>
-
+							<div class="card-body">
+								<div class="row mb-3">
+									<div class="col">
+										<a href="create_book.php" class="btn btn-outline-primary ">Tambah Data</a>
+									</div>
+									<div class="col mb-4">
+										<form class="d-flex" role="search" method="POST" action="">
+											<input class="form-control me-2" type="text" name="search" placeholder="Masukkan Keyword Pencarian">
+											<input class="btn btn-outline-info" type="submit" name="cari" value="Cari"></input>
+											<a href="index.php" class="btn btn-outline-warning ms-2">Refresh</a>
+										</form>
+									</div>
+									</div>
+									<div class="table-responsive text-nowrap">
+										<table class="table table-bordered">
+											<thead>
 												<tr>
-													<td><?= $data['id_buku'] ?></td>
-													<td>
-														<a href="update_book.php?update=<?php echo $data['id_buku'] ?>" class="btn btn-sm btn-primary mb-1" style="width: 80px;">Edit</a>
-														<br>
-														<a href="delete_book.php?update=<?php echo $data['id_buku'] ?>" onclick="return confirm ('Yakin akan menghapus data?')" class="btn btn-sm btn-danger" style="width: 80px;">Delete</a>
-													</td>
-													<td><?= $data['cover'] ?></td>
-													<td><?= $data['penulis'] ?></td>
-													<td><?= $data['tahun'] ?></td>
-													<td><?= $data['judul'] ?></td>
-													<td><?= $data['kota'] ?></td>
-													<td><?= $data['penerbit'] ?></td>
-													<td><?= $data['sinopsis'] ?></td>
-													<td><?= $data['stok'] ?></td>
+													<th>ID</th>
+													<th class="text-center">Aksi</th>
+													<th>Cover</th>
+													<th>Penulis</th>
+													<th>Tahun</th>
+													<th>Judul</th>
+													<th>Kota</th>
+													<th>Penerbit</th>
+													<th>Sinopsis</th>
+													<th>Stok</th>
 												</tr>
+											</thead>
+											<tbody class="table-border-bottom-0">
+
+												<?php
+												$batas = 10; //Batas data yang akan di munculkan
+
+												//proses mendapatkan url halaman
+												if (isset($_GET['halaman'])) {
+													$halaman = (int)$_GET['halaman'];
+												} else {
+													$halaman = 1;
+												}
 
 
-										<?php
-											}
-										}
+												if ($halaman > 1) {
+													$halaman_awal = ($halaman * $batas) - $batas;
+												} else {
+													$halaman_awal = 0;
+												}
+												$get_book = display('buku', 'limit ' . $halaman_awal . ',' . $batas);
+
+												$data = mysqli_query($conn, "SELECT * FROM buku");
+												$jumlah_data = mysqli_num_rows($data);
+												$total_halaman = ceil($jumlah_data / $batas);
+
+												if (mysqli_num_rows($get_book)) {
+													while ($data = mysqli_fetch_array($get_book)) {
+												?>
+
+														<tr>
+															<td><?= $data['id_buku'] ?></td>
+															<td>
+																<a href="update_book.php?update=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-warning">
+																	<i class='bx bx-pencil'></i>
+																</a>
+																<a href="delete_book.php?nip=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')">
+																	<i class='bx bx-trash'></i>
+																</a>
+															</td>
+															<td><?= $data['cover'] ?></td>
+															<td><?= $data['penulis'] ?></td>
+															<td><?= $data['tahun'] ?></td>
+															<td><?= $data['judul'] ?></td>
+															<td><?= $data['kota'] ?></td>
+															<td><?= $data['penerbit'] ?></td>
+															<td><?= $data['sinopsis'] ?></td>
+															<td><?= $data['stok'] ?></td>
+														</tr>
 
 
-										?>
+												<?php
+													}
+												}
 
-									</tbody>
-								</table>
+
+												?>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="mt-2 mx-auto">
-						<nav class="mx-auto" aria-label="Page navigation example">
-							<?php
-							if (isset($_GET['halaman'])) {
-								$newHalaman = $_GET['halaman'];
-							} else {
-								$newHalaman = 1;
-							}
-							$batasHalaman = $total_halaman;
-							?>
-							<ul class="pagination">
-								<?php
-								if ($newHalaman < 1) {
-									$newHalaman = 1;
-								}
-								if ($newHalaman != 1) { ?>
-									<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $halaman - 1 ?>">
-											< </a>
-									</li>
-									<?php }
-								for ($i = ($newHalaman - $batasHalaman); $i < ($newHalaman + $batasHalaman) + 1; $i++) {
-									if (($i > 0) && ($i <= $total_halaman)) {
-										if ($i == $newHalaman) { ?>
-											<li class="page-item"><a class="page-link fw-bold"><?= $i ?></a></li>
-										<?php } else { ?>
-											<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $i ?>"><?= $i ?></a></li>
-									<?php }
+						
+							<div class="mx-auto">
+								<nav class="mx-auto" aria-label="Page navigation example">
+									<?php
+									if (isset($_GET['halaman'])) {
+										$newHalaman = $_GET['halaman'];
+									} else {
+										$newHalaman = 1;
 									}
-								}
-								if ($newHalaman != $total_halaman) { ?>
-									<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $newHalaman + 1 ?>"> > </a></li>
-								<?php } ?>
-							</ul>
-						</nav>
-					</div>
+									$batasHalaman = $total_halaman;
+									?>
+									<ul class="pagination">
+										<?php
+										if ($newHalaman < 1) {
+											$newHalaman = 1;
+										}
+										if ($newHalaman != 1) { ?>
+											<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $halaman - 1 ?>">
+													< </a>
+											</li>
+											<?php }
+										for ($i = ($newHalaman - $batasHalaman); $i < ($newHalaman + $batasHalaman) + 1; $i++) {
+											if (($i > 0) && ($i <= $total_halaman)) {
+												if ($i == $newHalaman) { ?>
+													<li class="page-item"><a class="page-link fw-bold"><?= $i ?></a></li>
+												<?php } else { ?>
+													<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $i ?>"><?= $i ?></a></li>
+											<?php }
+											}
+										}
+										if ($newHalaman != $total_halaman) { ?>
+											<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $newHalaman + 1 ?>"> > </a></li>
+										<?php } ?>
+									</ul>
+								</nav>
+							</div>
+						</div>
 					<!--/ Striped Rows -->
 
 					<!-- / Content -->
