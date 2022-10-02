@@ -22,11 +22,12 @@ if (isset($_POST['login'])) {
 			$_SESSION['role'] = "admin";
 			header("location:../../views/admin/admin_home.php");
 		} else {
-	
-			header("location:../../index.php?pesan=gagal");
+      echo "<script>alert('Username or Password is Wrong!');
+		  document.location='admin.php'</script>";
 		}
 	} else {
-		header("location:../../index.php?pesan=gagal");
+    echo "<script>alert('Username or Password is Wrong!');
+    document.location='admin.php'</script>";
 	}
 }
 

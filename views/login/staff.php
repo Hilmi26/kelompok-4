@@ -21,8 +21,11 @@ if (isset($_POST['login'])) {
     $_SESSION['nama'] = $data['nama'];
     header("location:../../views/petugas/staff_home.php");
   } else {
-    header("location:../../index.php?pesan=gagal");
+    echo "<script>alert('NIP or Password is Wrong!');
+    document.location='staff.php'</script>";
   }
+  echo "<script>alert('NIP or Password is Wrong!');
+  document.location='staff.php'</script>";
 }
 
 ?>
