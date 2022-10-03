@@ -183,8 +183,16 @@ include '../../controllers/admin/function_staff.php'
 						<!-- Bordered Table -->
 						<div class="card">
 							<div class="card-body">
-								<div class="mb-4">
-									<a href="create_staff.php" class="btn btn-outline-primary">Tambah Data</a>
+								<div class="row mb-4">
+									<div class="col">
+										<a href="create_staff.php" class="btn btn-outline-primary">Tambah Data</a>
+									</div>
+									<div class="col">
+										<div class="input-group">
+											<span class="input-group-text"><i class="tf-icons bx bx-search"></i></span>
+											<input type="text" class="form-control" placeholder="Search...">
+										</div>
+									</div>
 								</div>
 								<div class="table-responsive text-nowrap">
 									<table class="table table-bordered">
