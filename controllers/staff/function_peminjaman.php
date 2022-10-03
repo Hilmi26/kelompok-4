@@ -17,7 +17,7 @@ function insert($data)
 
 	$id_peminjaman = $data['id_peminjaman'];
 	$nis = $data['nis'];
-	$petugas = $data['nama_petugas'];
+	$petugas = $data['nip_petugas'];
 	$tgl_peminjaman = $data['tgl_peminjaman'];
 	$tgl_pengembalian = $data['tgl_pengembalian'];
 	$judul = $data['judul'];
@@ -26,7 +26,7 @@ function insert($data)
 	$query_p = "INSERT INTO peminjaman
 	(id_peminjaman, id_siswa, id_petugas, tgl_peminjaman, tgl_pengembalian)
 	VALUES ('$id_peminjaman', '$nis', '$petugas', '$tgl_peminjaman', '$tgl_pengembalian')";
-	// var_dump($query_p);
+	var_dump($query_p);
 	mysqli_query($conn, $query_p);
 	
 	$select = "SELECT * FROM peminjaman ORDER BY id_peminjaman DESC";
@@ -35,7 +35,7 @@ function insert($data)
 
 	$query_dp = "INSERT INTO detail_peminjaman 
 	(id_detail_peminjaman,id_buku, id_peminjaman, kuantitas ) VALUES ('', '$judul', '$data1[id_peminjaman]', '$jumlah')";
-	// var_dump($query_dp);
+	var_dump($query_dp);
 	mysqli_query($conn, $query_dp);
 
 	return mysqli_affected_rows($conn);

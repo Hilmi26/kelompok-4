@@ -17,8 +17,10 @@ if (isset($_POST['login'])) {
 
   if ($cek > 0) {
     $data = mysqli_fetch_assoc($query);
+    
     $_SESSION['nip'] = $data['nip'];
-    $_SESSION['nama'] = $data['nama'];
+    $_SESSION['nip'] = $nip;
+    // $_SESSION['nama'] = $data['nama'];
     header("location:../../views/petugas/staff_home.php");
   } else {
     echo "<script>alert('NIP or Password is Wrong!');

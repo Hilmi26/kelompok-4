@@ -2,17 +2,24 @@
 
 <?php
 include '../../controllers/staff/function_peminjaman.php';
+ob_start();
+session_start();
 
 if (isset($_POST['submit'])) {
 
     if (insert($_POST) > 0) {
-        echo "<script>alert('Data telah tersimpan');
+        echo "<script>alert('Peminjaman Berhasil');
 		document.location='peminjaman.php'</script>";
     } else {
         echo "<script>alert('Gagal');
 		document.location='create_peminjaman.php'</script>";
     }
 }
+
+$tgl_sekarang = date('Y-m-d');
+$hasil_tgl = date_create($tgl_sekarang);
+$tgl_pengembalian = date_add($hasil_tgl, date_interval_create_from_date_string('14 days'));
+
 ?>
 
 <!DOCTYPE html>
@@ -62,46 +69,46 @@ if (isset($_POST['submit'])) {
             <!-- Menu -->
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-				<div class="app-brand demo ">
-					<a href="index.html" class="app-brand-link">
-						<span>
-							<i class="menu-icon tf-icons bx bx-book-content"></i>
-						</span>
-						<span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
-					</a>
+                <div class="app-brand demo ">
+                    <a href="index.html" class="app-brand-link">
+                        <span>
+                            <i class="menu-icon tf-icons bx bx-book-content"></i>
+                        </span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+                    </a>
 
-					<a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-						<i class="bx bx-chevron-left bx-sm align-middle"></i>
-					</a>
-				</div>
-				<div class="menu-inner-shadow"></div>
-				<ul class="menu-inner py-1">
-					<li class="menu-item">
-						<a href="staff_home.php" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-home-circle"></i>
-							<div data-i18n="Analytics">Dashboard</div>
-						</a>
-					</li>
-					<li class="menu-item">
-						<a href="peminjaman.php" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-book"></i>
-							<div data-i18n="Analytics">Peminjaman</div>
-						</a>
-					</li>
-					<li class="menu-item">
-						<a href="pengembalian.php" class="menu-link ">
-							<i class="menu-icon tf-icons bx bx-user-pin"></i>
-							<div data-i18n="Layouts">Pengambalian</div>
-						</a>
-					</li>
-					<li class="menu-item">
-						<a href="table_students.php" class="menu-link">
-							<i class="menu-icon tf-icons bx bx-user"></i>
-							<div data-i18n="Analytics">History Transaksi</div>
-						</a>
-					</li>
-				</ul>
-			</aside>
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                    </a>
+                </div>
+                <div class="menu-inner-shadow"></div>
+                <ul class="menu-inner py-1">
+                    <li class="menu-item">
+                        <a href="staff_home.php" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">Dashboard</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="peminjaman.php" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-book"></i>
+                            <div data-i18n="Analytics">Peminjaman</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="pengembalian.php" class="menu-link ">
+                            <i class="menu-icon tf-icons bx bx-user-pin"></i>
+                            <div data-i18n="Layouts">Pengambalian</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="table_students.php" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-user"></i>
+                            <div data-i18n="Analytics">History Transaksi</div>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
             <!-- / Menu -->
 
             <!-- Layout container -->
@@ -195,55 +202,64 @@ if (isset($_POST['submit'])) {
                         <div class="card">
                             <div class="card-body">
                                 <form action="" method="post">
-                                <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Nama Petugas</label>
+                                    <div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">NIP Petugas</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="nama_petugas">
+                                            <input class="form-control" type="text" name="nip_petugas" required>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">ID Peminjaman</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="id_peminjaman">
+                                            <input class="form-control" type="text" name="id_peminjaman" required>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">NIS</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="number" name="nis">
-                                        </div>
-                                    </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Nama Siswa</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="text" name="nama_siswa">
+                                             <select name="nis" class="custom-select container-fluid form-control" required>
+                                                <option selected>Pilih Siswa</option>
+                                                <?php
+                                                $sql = mysqli_query($conn, "SELECT * FROM siswa");
+                                                while ($data1 = mysqli_fetch_array($sql)) {
+                                                    echo "<option value=$data1[nis]> $data1[nis] $data1[nama_siswa]</option>";
+                                                    //value=$data1[id_buku] id buku yang akan di simpan di tabel peminjaman
+                                                    //$data1[nama_buku] label data dari tabel buku
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Judul Buku</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="number" name="judul">
+                                            <!-- <input class="form-control" type="number" name="judul"> -->
+                                            <select name="judul" class="custom-select container-fluid form-control" required>
+                                                <option selected>Pilih Buku</option>
+                                                <?php
+                                                $sql = mysqli_query($conn, "SELECT * FROM buku");
+                                                while ($data1 = mysqli_fetch_array($sql)) {
+                                                    echo "<option value=$data1[id_buku]> $data1[judul]</option>";
+                                                    //value=$data1[id_buku] id buku yang akan di simpan di tabel peminjaman
+                                                    //$data1[nama_buku] label data dari tabel buku
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Penerbit</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="text" name="penerbit">
-                                        </div>
-                                    </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">TGL Peminjaman</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="tgl_peminjaman">
+                                            <input class="form-control" type="text" name="tgl_peminjaman" value="<?= $tgl_sekarang; ?>" readonly>
                                         </div>
                                     </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">TGL Pengembalian</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="tgl_pengembalian">
+                                            <input class="form-control" type="text" name="tgl_pengembalian" value="<?= date_format($tgl_pengembalian, 'Y-m-d'); ?>" readonly>
                                         </div>
                                     </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Jumlah</label>
                                         <div class="col-md-10">
                                             <input class="form-control" type="number" name="kuantitas">
