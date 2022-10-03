@@ -227,10 +227,13 @@ if (isset($_POST['submit'])) {
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Kelas</label>
                                         <div class="col-md-10">
                                             <select class="form-select" name="id_kelas">
-                                                <option disabled selected> Pilih </option>
-                                                <option value="1">IX</option>
-                                                <option value="2">X</option>
-                                                <option value="3">XI</option>
+                                                <option selected>Pilih Kelas</option>
+                                                <?php
+                                                $sql = mysqli_query($conn, "SELECT * FROM kelas");
+                                                while ($data = mysqli_fetch_array($sql)) {
+                                                    echo "<option value=$data[id_kelas]> $data[nama_kelas]</option>";
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
