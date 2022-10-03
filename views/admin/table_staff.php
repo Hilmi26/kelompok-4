@@ -222,7 +222,7 @@ include '../../controllers/admin/function_staff.php'
 															<a class="btn btn-icon btn-outline-warning" href="update_staff.php?update=<?php echo $data['nip']; ?>">
 																<i class='bx bx-pencil'></i>
 															</a>
-															<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['nip']; ?>">
+															<a class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')" href="delete_staff.php?nip=<?php echo $data['nip']; ?>">
 																<i class='bx bx-trash'></i>
 															</a>
 														</td>

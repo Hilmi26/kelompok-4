@@ -226,7 +226,7 @@ if (!$_SESSION) {
 														<a class="btn btn-icon btn-outline-warning" href="update_students.php?update=<?php echo $data['nis']; ?>">
 															<i class='bx bx-pencil'></i>
 														</a>
-														<a class="btn btn-icon btn-outline-danger" href="delete_students.php?nis=<?php echo $data['nis']; ?>">
+														<a class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')" href="delete_students.php?nis=<?php echo $data['nis']; ?>">
 															<i class='bx bx-trash'></i>
 														</a>
 													</td>
