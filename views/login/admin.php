@@ -3,32 +3,32 @@
 include '../../config/connection.php';
 session_start();
 
-if($_SESSION){
+if ($_SESSION) {
   header('location:../admin/admin_home.php');
 }
 
 if (isset($_POST['login'])) {
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
-	$query = mysqli_query($conn, "SELECT * FROM super_user WHERE username = '$username' AND password = '$password'");
-	$cek = mysqli_num_rows($query);
+  $query = mysqli_query($conn, "SELECT * FROM super_user WHERE username = '$username' AND password = '$password'");
+  $cek = mysqli_num_rows($query);
 
-	if ($cek > 0) {
-		$data = mysqli_fetch_assoc($query);
-		if ($data['role'] == "admin") {
-	
-			$_SESSION['username'] = $data['username'];
-			$_SESSION['role'] = "admin";
-			header("location:../../views/admin/admin_home.php");
-		} else {
+  if ($cek > 0) {
+    $data = mysqli_fetch_assoc($query);
+    if ($data['role'] == "admin") {
+
+      $_SESSION['username'] = $data['username'];
+      $_SESSION['role'] = "admin";
+      header("location:../../views/admin/admin_home.php");
+    } else {
       echo "<script>alert('Username or Password is Wrong!');
 		  document.location='admin.php'</script>";
-		}
-	} else {
+    }
+  } else {
     echo "<script>alert('Username or Password is Wrong!');
     document.location='admin.php'</script>";
-	}
+  }
 }
 
 ?>
@@ -46,7 +46,7 @@ if (isset($_POST['login'])) {
   <meta name="description" content="" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -54,25 +54,25 @@ if (isset($_POST['login'])) {
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
   <!-- Icons. Uncomment required icon fonts -->
-  <link rel="stylesheet" href="../../../assets/vendor/fonts/boxicons.css" />
+  <link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
 
   <!-- Core CSS -->
-  <link rel="stylesheet" href="../../../assets/vendor/css/core.css" class="template-customizer-core-css" />
-  <link rel="stylesheet" href="../../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-  <link rel="stylesheet" href="../../../assets/css/demo.css" />
+  <link rel="stylesheet" href="../../assets/vendor/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="../../assets/css/demo.css" />
 
   <!-- Vendors CSS -->
-  <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
   <!-- Page CSS -->
   <!-- Page -->
-  <link rel="stylesheet" href="../../../assets/vendor/css/pages/page-auth.css" />
+  <link rel="stylesheet" href="../../assets/vendor/css/pages/page-auth.css" />
   <!-- Helpers -->
-  <script src="../../../assets/vendor/js/helpers.js"></script>
+  <script src="../../assets/vendor/js/helpers.js"></script>
 
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-  <script src="../../../assets/js/config.js"></script>
+  <script src="../../assets/js/config.js"></script>
 </head>
 
 <body>
@@ -88,9 +88,9 @@ if (isset($_POST['login'])) {
             <div class="app-brand justify-content-center">
               <a href="index.html" class="app-brand-link">
                 <span>
-                  <i class="menu-icon tf-icons bx bx-book-content"></i>
+                  <i class="menu-icon tf-icons bx bx-book-content bx-md"></i>
                 </span>
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+                <span class="app-brand-text demo menu-text fw-bolder">Library</span>
               </a>
             </div>
             <!-- /Logo -->
@@ -142,13 +142,13 @@ if (isset($_POST['login'])) {
   <script src="../../assets/vendor/js/bootstrap.js"></script>
   <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-  <script src="../assets/vendor/js/menu.js"></script>
+  <script src="../../assets/vendor/js/menu.js"></script>
   <!-- endbuild -->
 
   <!-- Vendors JS -->
 
   <!-- Main JS -->
-  <script src="../assets/js/main.js"></script>
+  <script src="../../assets/js/main.js"></script>
 
   <!-- Page JS -->
 

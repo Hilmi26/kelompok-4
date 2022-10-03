@@ -22,7 +22,7 @@ if (!$_SESSION) {
 	<meta name="description" content="" />
 
 	<!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
 
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,22 +30,22 @@ if (!$_SESSION) {
 	<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
 	<!-- Icons. Uncomment required icon fonts -->
-	<link rel="stylesheet" href="../../../assets/vendor/fonts/boxicons.css" />
+	<link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
 
 	<!-- Core CSS -->
-	<link rel="stylesheet" href="../../../assets/vendor/css/core.css" class="template-customizer-core-css" />
-	<link rel="stylesheet" href="../../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-	<link rel="stylesheet" href="../../../assets/css/demo.css" />
+	<link rel="stylesheet" href="../../assets/vendor/css/core.css" class="template-customizer-core-css" />
+	<link rel="stylesheet" href="../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+	<link rel="stylesheet" href="../../assets/css/demo.css" />
 
 	<!-- Vendors CSS -->
-	<link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+	<link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-	<link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
+	<link rel="stylesheet" href="../../assets/vendor/libs/apex-charts/apex-charts.css" />
 
 	<!-- Helpers -->
-	<script src="../../../assets/vendor/js/helpers.js"></script>
+	<script src="../../assets/vendor/js/helpers.js"></script>
 
-	<script src="../../../assets/js/config.js"></script>
+	<script src="../../assets/js/config.js"></script>
 </head>
 
 <body>
@@ -58,9 +58,9 @@ if (!$_SESSION) {
 				<div class="app-brand demo ">
 					<a href="index.html" class="app-brand-link">
 						<span>
-							<i class="menu-icon tf-icons bx bx-book-content"></i>
+							<i class="menu-icon tf-icons bx bx-book-content bx-sm"></i>
 						</span>
-						<span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+						<span class="app-brand-text demo menu-text fw-bolder ms-1">Library</span>
 					</a>
 
 					<a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -198,159 +198,159 @@ if (!$_SESSION) {
 											<a href="index.php" class="btn btn-outline-warning ms-2">Refresh</a>
 										</form>
 									</div>
-									</div>
-									<div class="table-responsive text-nowrap">
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<th>ID</th>
-													<th class="text-center">Aksi</th>
-													<th>Cover</th>
-													<th>Penulis</th>
-													<th>Tahun</th>
-													<th>Judul</th>
-													<th>Kota</th>
-													<th>Penerbit</th>
-													<th>Sinopsis</th>
-													<th>Stok</th>
-												</tr>
-											</thead>
-											<tbody class="table-border-bottom-0">
+								</div>
+								<div class="table-responsive text-nowrap">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th class="text-center">Aksi</th>
+												<th>Cover</th>
+												<th>Penulis</th>
+												<th>Tahun</th>
+												<th>Judul</th>
+												<th>Kota</th>
+												<th>Penerbit</th>
+												<th>Sinopsis</th>
+												<th>Stok</th>
+											</tr>
+										</thead>
+										<tbody class="table-border-bottom-0">
 
-												<?php
-												$batas = 10; //Batas data yang akan di munculkan
+											<?php
+											$batas = 10; //Batas data yang akan di munculkan
 
-												//proses mendapatkan url halaman
-												if (isset($_GET['halaman'])) {
-													$halaman = (int)$_GET['halaman'];
-												} else {
-													$halaman = 1;
+											//proses mendapatkan url halaman
+											if (isset($_GET['halaman'])) {
+												$halaman = (int)$_GET['halaman'];
+											} else {
+												$halaman = 1;
+											}
+
+
+											if ($halaman > 1) {
+												$halaman_awal = ($halaman * $batas) - $batas;
+											} else {
+												$halaman_awal = 0;
+											}
+											$get_book = display('buku', 'limit ' . $halaman_awal . ',' . $batas);
+
+											$data = mysqli_query($conn, "SELECT * FROM buku");
+											$jumlah_data = mysqli_num_rows($data);
+											$total_halaman = ceil($jumlah_data / $batas);
+
+											if (mysqli_num_rows($get_book)) {
+												while ($data = mysqli_fetch_array($get_book)) {
+											?>
+
+													<tr>
+														<td><?= $data['id_buku'] ?></td>
+														<td>
+															<a href="update_book.php?update=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-warning">
+																<i class='bx bx-pencil'></i>
+															</a>
+															<a href="delete_book.php?nip=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')">
+																<i class='bx bx-trash'></i>
+															</a>
+														</td>
+														<td><?= $data['cover'] ?></td>
+														<td><?= $data['penulis'] ?></td>
+														<td><?= $data['tahun'] ?></td>
+														<td><?= $data['judul'] ?></td>
+														<td><?= $data['kota'] ?></td>
+														<td><?= $data['penerbit'] ?></td>
+														<td><?= $data['sinopsis'] ?></td>
+														<td><?= $data['stok'] ?></td>
+													</tr>
+
+
+											<?php
 												}
+											}
 
 
-												if ($halaman > 1) {
-													$halaman_awal = ($halaman * $batas) - $batas;
-												} else {
-													$halaman_awal = 0;
-												}
-												$get_book = display('buku', 'limit ' . $halaman_awal . ',' . $batas);
+											?>
 
-												$data = mysqli_query($conn, "SELECT * FROM buku");
-												$jumlah_data = mysqli_num_rows($data);
-												$total_halaman = ceil($jumlah_data / $batas);
-
-												if (mysqli_num_rows($get_book)) {
-													while ($data = mysqli_fetch_array($get_book)) {
-												?>
-
-														<tr>
-															<td><?= $data['id_buku'] ?></td>
-															<td>
-																<a href="update_book.php?update=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-warning">
-																	<i class='bx bx-pencil'></i>
-																</a>
-																<a href="delete_book.php?nip=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')">
-																	<i class='bx bx-trash'></i>
-																</a>
-															</td>
-															<td><?= $data['cover'] ?></td>
-															<td><?= $data['penulis'] ?></td>
-															<td><?= $data['tahun'] ?></td>
-															<td><?= $data['judul'] ?></td>
-															<td><?= $data['kota'] ?></td>
-															<td><?= $data['penerbit'] ?></td>
-															<td><?= $data['sinopsis'] ?></td>
-															<td><?= $data['stok'] ?></td>
-														</tr>
-
-
-												<?php
-													}
-												}
-
-
-												?>
-
-											</tbody>
-										</table>
-									</div>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
+					</div>
 
-						
-							<div class="mx-auto">
-								<nav class="mx-auto" aria-label="Page navigation example">
-									<?php
-									if (isset($_GET['halaman'])) {
-										$newHalaman = $_GET['halaman'];
-									} else {
-										$newHalaman = 1;
+
+					<div class="mx-auto">
+						<nav class="mx-auto" aria-label="Page navigation example">
+							<?php
+							if (isset($_GET['halaman'])) {
+								$newHalaman = $_GET['halaman'];
+							} else {
+								$newHalaman = 1;
+							}
+							$batasHalaman = $total_halaman;
+							?>
+							<ul class="pagination">
+								<?php
+								if ($newHalaman < 1) {
+									$newHalaman = 1;
+								}
+								if ($newHalaman != 1) { ?>
+									<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $halaman - 1 ?>">
+											< </a>
+									</li>
+									<?php }
+								for ($i = ($newHalaman - $batasHalaman); $i < ($newHalaman + $batasHalaman) + 1; $i++) {
+									if (($i > 0) && ($i <= $total_halaman)) {
+										if ($i == $newHalaman) { ?>
+											<li class="page-item"><a class="page-link fw-bold"><?= $i ?></a></li>
+										<?php } else { ?>
+											<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $i ?>"><?= $i ?></a></li>
+									<?php }
 									}
-									$batasHalaman = $total_halaman;
-									?>
-									<ul class="pagination">
-										<?php
-										if ($newHalaman < 1) {
-											$newHalaman = 1;
-										}
-										if ($newHalaman != 1) { ?>
-											<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $halaman - 1 ?>">
-													< </a>
-											</li>
-											<?php }
-										for ($i = ($newHalaman - $batasHalaman); $i < ($newHalaman + $batasHalaman) + 1; $i++) {
-											if (($i > 0) && ($i <= $total_halaman)) {
-												if ($i == $newHalaman) { ?>
-													<li class="page-item"><a class="page-link fw-bold"><?= $i ?></a></li>
-												<?php } else { ?>
-													<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $i ?>"><?= $i ?></a></li>
-											<?php }
-											}
-										}
-										if ($newHalaman != $total_halaman) { ?>
-											<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $newHalaman + 1 ?>"> > </a></li>
-										<?php } ?>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					<!--/ Striped Rows -->
-
-					<!-- / Content -->
-
-					<!-- Footer -->
-					<footer class="content-footer footer bg-footer-theme">
-						<div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-							<div class="mb-2 mb-md-0">
-								©
-								<script>
-									document.write(new Date().getFullYear());
-								</script>
-								, made with ❤️ by
-								<a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-							</div>
-							<div>
-								<a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-								<a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-								<a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
-
-								<a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Support</a>
-							</div>
-						</div>
-					</footer>
-					<!-- / Footer -->
-
-					<div class="content-backdrop fade"></div>
+								}
+								if ($newHalaman != $total_halaman) { ?>
+									<li class="page-item"><a class="page-link" href="table_books.php?halaman=<?= $newHalaman + 1 ?>"> > </a></li>
+								<?php } ?>
+							</ul>
+						</nav>
+					</div>
 				</div>
-				<!-- Content wrapper -->
-			</div>
-			<!-- / Layout page -->
-		</div>
+				<!--/ Striped Rows -->
 
-		<!-- Overlay -->
-		<div class="layout-overlay layout-menu-toggle"></div>
+				<!-- / Content -->
+
+				<!-- Footer -->
+				<footer class="content-footer footer bg-footer-theme">
+					<div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+						<div class="mb-2 mb-md-0">
+							©
+							<script>
+								document.write(new Date().getFullYear());
+							</script>
+							, made with ❤️ by
+							<a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+						</div>
+						<div>
+							<a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+							<a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+							<a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
+
+							<a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Support</a>
+						</div>
+					</div>
+				</footer>
+				<!-- / Footer -->
+
+				<div class="content-backdrop fade"></div>
+			</div>
+			<!-- Content wrapper -->
+		</div>
+		<!-- / Layout page -->
+	</div>
+
+	<!-- Overlay -->
+	<div class="layout-overlay layout-menu-toggle"></div>
 	</div>
 	<!-- / Layout wrapper -->
 

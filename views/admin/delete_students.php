@@ -2,7 +2,7 @@
 <?php
 include '../../controllers/admin/function_students.php';
 
-$id = $_GET["nis"]; //mengambil data ud_siswa dari url
+$id = $_GET["nis"]; //mengambil data nis dari url
 
 if (delete($id) > 0) {
   echo "<script>alert('Data berhasil dihapus');

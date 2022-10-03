@@ -1,7 +1,6 @@
 <!-- Zacky -->
-
 <?php
-include '../../controllers/admin/function_books.php';
+include '../../controllers/student/function_list.php';
 ?>
 
 <!DOCTYPE html>
@@ -52,9 +51,9 @@ include '../../controllers/admin/function_books.php';
                 <div class="app-brand demo ">
                     <a href="index.html" class="app-brand-link">
                         <span>
-                            <i class="menu-icon tf-icons bx bx-book-content"></i>
+                            <i class="menu-icon tf-icons bx bx-book-content bx-sm"></i>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-1">Library</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">

@@ -59,9 +59,9 @@ if (!$_SESSION) {
 				<div class="app-brand demo ">
 					<a href="index.html" class="app-brand-link">
 						<span>
-							<i class="menu-icon tf-icons bx bx-book-content"></i>
+							<i class="menu-icon tf-icons bx bx-book-content bx-sm"></i>
 						</span>
-						<span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+						<span class="app-brand-text demo menu-text fw-bolder ms-1">Library</span>
 					</a>
 
 					<a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -226,7 +226,7 @@ if (!$_SESSION) {
 														<a class="btn btn-icon btn-outline-warning" href="update_students.php?update=<?php echo $data['nis']; ?>">
 															<i class='bx bx-pencil'></i>
 														</a>
-														<a class="btn btn-icon btn-outline-danger" href="delete_students.php?nis=<?php echo $data['nis']; ?>">
+														<a class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')" href="delete_students.php?nis=<?php echo $data['nis']; ?>">
 															<i class='bx bx-trash'></i>
 														</a>
 													</td>

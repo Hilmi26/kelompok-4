@@ -54,9 +54,9 @@ include '../../controllers/admin/function_staff.php'
 				<div class="app-brand demo ">
 					<a href="index.html" class="app-brand-link">
 						<span>
-							<i class="menu-icon tf-icons bx bx-book-content"></i>
+							<i class="menu-icon tf-icons bx bx-book-content bx-sm"></i>
 						</span>
-						<span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+						<span class="app-brand-text demo menu-text fw-bolder ms-1">Library</span>
 					</a>
 
 					<a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -222,7 +222,7 @@ include '../../controllers/admin/function_staff.php'
 															<a class="btn btn-icon btn-outline-warning" href="update_staff.php?update=<?php echo $data['nip']; ?>">
 																<i class='bx bx-pencil'></i>
 															</a>
-															<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['nip']; ?>">
+															<a class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')" href="delete_staff.php?nip=<?php echo $data['nip']; ?>">
 																<i class='bx bx-trash'></i>
 															</a>
 														</td>

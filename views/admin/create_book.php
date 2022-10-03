@@ -65,9 +65,9 @@ if (isset($_POST['submit'])) {
                 <div class="app-brand demo ">
                     <a href="index.html" class="app-brand-link">
                         <span>
-                            <i class="menu-icon tf-icons bx bx-book-content"></i>
+                            <i class="menu-icon tf-icons bx bx-book-content bx-sm"></i>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-1">Library</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -207,37 +207,37 @@ if (isset($_POST['submit'])) {
                                             <input class="form-control" type="number" name="tahun">
                                         </div>
                                     </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Judul</label>
                                         <div class="col-md-10">
                                             <input class="form-control" type="text" name="judul">
                                         </div>
                                     </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Kota</label>
                                         <div class="col-md-10">
                                             <input class="form-control" type="text" name="kota">
                                         </div>
                                     </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Penerbit</label>
                                         <div class="col-md-10">
                                             <input class="form-control" type="text" name="penerbit">
                                         </div>
                                     </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Cover</label>
                                         <div class="col-md-10">
                                             <input class="form-control" type="image" name="cover">
                                         </div>
                                     </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Sinopsis</label>
                                         <div class="col-md-10">
                                             <input class="form-control" type="text" name="sinopsis">
                                         </div>
                                     </div>
-									<div class="mb-3 row">
+                                    <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Stok</label>
                                         <div class="col-md-10">
                                             <input class="form-control" type="number" name="stok">
