@@ -249,11 +249,13 @@ if (!$_SESSION) {
 															<a href="update_book.php?update=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-warning">
 																<i class='bx bx-pencil'></i>
 															</a>
-															<a href="delete_book.php?nip=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')">
+															<a href="delete_books.php?id_buku=<?php echo $data['id_buku']; ?>" class="btn btn-icon btn-outline-danger" onclick="return confirm ('Yakin akan menghapus data?')">
 																<i class='bx bx-trash'></i>
 															</a>
 														</td>
-														<td><?= $data['cover'] ?></td>
+														<td>
+															<img src="cover/<?= $data['cover'] ?>" alt="" class="img-thumbnail" width="80px">
+														</td>
 														<td><?= $data['penulis'] ?></td>
 														<td><?= $data['tahun'] ?></td>
 														<td><?= $data['judul'] ?></td>
