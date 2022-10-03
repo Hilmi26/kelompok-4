@@ -180,116 +180,129 @@ include '../../config/connection.php';
 				<div class="content-wrapper">
 					<div class="container-xxl flex-grow-1 container-p-y">
 						<h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">Transaksi /</span> Data Transaksi
+							<span class="text-muted fw-light">Peminjaman /</span> Detail Peminjaman
 						</h4>
 						<!-- Bordered Table -->
 						<div class="card">
 							<div class="card-body">
-								<h4>Detail Peminjaman</h4>
-								<div class="d-flex">
-									<div class="table-responsive text-nowrap">
-										<table class="table table-borderless">
-											<thead>
-												<tr>
-													<th> </th>
-												</tr>
-											</thead>
-											<tbody>
-												<?php
-												$query = mysqli_query($conn, "SELECT peminjaman.id_peminjaman,
-											siswa.nis,
-											siswa.nama_siswa,
-											kelas.nama_kelas,
-											petugas.nama_petugas,
-											peminjaman.tgl_peminjaman,
-											peminjaman.tgl_pengembalian
-											FROM peminjaman, siswa, petugas, kelas 
-											WHERE peminjaman.id_siswa = siswa.nis AND
-											peminjaman.id_petugas = petugas.nip
-											AND siswa.id_kelas = kelas.id_kelas");
-												// $ambil = display('petugas');
-												if (mysqli_num_rows($query)) {
-													while ($data = mysqli_fetch_array($query)) {
-												?>
+								<?php
+								$query = mysqli_query($conn, "SELECT peminjaman.id_peminjaman,
+										siswa.nis,
+										siswa.nama_siswa,
+										kelas.nama_kelas,
+										petugas.nama_petugas,
+										peminjaman.tgl_peminjaman,
+										peminjaman.tgl_pengembalian
+										FROM peminjaman, siswa, petugas, kelas 
+										WHERE peminjaman.id_siswa = siswa.nis AND
+										peminjaman.id_petugas = petugas.nip
+										AND siswa.id_kelas = kelas.id_kelas");
+
+								if (mysqli_num_rows($query)) {
+									while ($data = mysqli_fetch_array($query)) {
+								?>
+										<div class="row">
+											<div class="col">
+												<h4>ID Peminjaman : <?php echo $data['id_peminjaman'] ?></h4>
+											</div>
+											<div class="col text-end">
+												<a href="peminjaman.php" class="btn btn-outline-danger">Kembali</a>
+											</div>
+										</div>
+										<div class="d-flex">
+											<div class="table-responsive text-nowrap">
+												<table class="table table-borderless">
+													<thead>
 														<tr>
-															<td><label>ID Peminjaman</label></td>
-															<td>:  <?= $data['id_peminjaman'] ?></td>
 														</tr>
+													</thead>
+													<tbody>
 														<tr>
 															<td><label>NIS</label></td>
-															<td>:  <?= $data['nis'] ?></td>
+															<td>: <?= $data['nis'] ?></td>
+
+															<td> </td>
+
+															<td><label>Tgl Peminjaman </label></td>
+															<td>: <?= $data['tgl_peminjaman'] ?></td>
+
 														</tr>
 														<tr>
 															<td><label>Nama</label></td>
-															<td>:  <?= $data['nama_siswa'] ?></td>
+															<td>: <?= $data['nama_siswa'] ?></td>
+
+															<td> </td>
+
+															<td><label>Tgl Pengembalian </label></td>
+															<td>: <?= $data['tgl_pengembalian'] ?></td>
 														</tr>
 														<tr>
 															<td><label>Kelas</label></td>
-															<td>:  <?= $data['nama_kelas'] ?></td>
+															<td>: <?= $data['nama_kelas'] ?></td>
 														</tr>
-														
-												<?php
-													}
-												}
-												?>
-											</tbody>
-										</table>
-									</div>
 
-								</div>
-								<div class="table-responsive text-nowrap mt-3">
-									<table class="table table-bordered">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>Cover</th>
-												<th>Judul Buku</th>
-												<th>Jumlah Buku</th>
-												<th>TGL Peminjaman</th>
-												<th>TGL Pengembalian</th>
-												<th>Aksi</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
-											$query = mysqli_query($conn, "SELECT detail_peminjaman.id_detail_peminjaman,
-											buku.cover,
-											buku.judul,
-											detail_peminjaman.kuantitas,
-											peminjaman.tgl_peminjaman,
-											peminjaman.tgl_pengembalian
-											FROM detail_peminjaman, buku, peminjaman
-											WHERE detail_peminjaman.id_buku = buku.id_buku
-											AND detail_peminjaman.id_peminjaman = peminjaman.id_peminjaman 
-											 
-											");
-											// $ambil = display('petugas');
-											if (mysqli_num_rows($query)) {
-												while ($data = mysqli_fetch_array($query)) {
-											?>
-													<tr>
-														<td><?= $data['id_detail_peminjaman'] ?></td>
-														<td><?= $data['cover'] ?></td>
-														<td><?= $data['judul'] ?></td>
-														<td><?= $data['kuantitas'] ?></td>
-														<td><?= $data['tgl_peminjaman'] ?></td>
-														<td><?= $data['tgl_pengembalian'] ?></td>
-														<td colspan="2">
-															<a class="btn btn-icon btn-outline-warning" href="update_staff.php?id=<?php echo $data['id_detail_peminjaman']; ?>">
-																<i class='bx bx-detail'></i>
-															</a>
-															<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['id_detail_peminjaman']; ?>">
-																<i class='bx bx-trash'></i>
-															</a>
-														</td>
-													</tr>
-											<?php
-												}
+												<?php
 											}
-											?>
-										</tbody>
-									</table>
-								</div>
+										}
+												?>
+													</tbody>
+												</table>
+											</div>
+
+											<!-- <div class="col text-end mt-5">
+												<a href="create_pinjam.php" class="btn btn-outline-primary mt-5">Tambah Peminjaman</a>
+											</div> -->
+
+										</div>
+
+										<div class="table-responsive text-nowrap mt-3">
+											<table class="table table-bordered">
+												<thead>
+													<tr class="text-center">
+
+														<th>Cover</th>
+														<th>Judul Buku</th>
+														<th>Jumlah</th>
+														<th>Aksi</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+													$query = mysqli_query($conn, "SELECT detail_peminjaman.id_detail_peminjaman,
+														peminjaman.id_peminjaman,
+														buku.cover,
+														buku.judul,
+														detail_peminjaman.kuantitas,
+														peminjaman.tgl_peminjaman,
+														peminjaman.tgl_pengembalian
+														FROM detail_peminjaman, buku, peminjaman
+														WHERE detail_peminjaman.id_buku = buku.id_buku
+														AND detail_peminjaman.id_peminjaman = peminjaman.id_peminjaman 	
+														");
+													// $ambil = display('petugas');
+													if (mysqli_num_rows($query)) {
+														while ($data = mysqli_fetch_array($query)) {
+													?>
+															<tr>
+																<td><?= $data['cover'] ?></td>
+																<td><?= $data['judul'] ?></td>
+																<td class="text-center"><?= $data['kuantitas'] ?></td>
+																<td class="text-center" colspan="2">
+																	<a class="btn btn-icon btn-outline-warning" href="detail_peminjaman.php?id=<?php echo $data['id_peminjaman']; ?>">
+																		<i class='bx bx-detail'></i>
+																	</a>
+																	<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['id_peminjaman']; ?>">
+																		<i class='bx bx-trash'></i>
+																	</a>
+																</td>
+															</tr>
+													<?php
+														}
+													}
+													?>
+												</tbody>
+											</table>
+										</div>
 							</div>
 						</div>
 					</div>
