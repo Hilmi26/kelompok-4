@@ -5,7 +5,7 @@ session_start();
 include '../../config/connection.php';
 
 if ($_SESSION) {
-	header('location:../petugas/staff_home.php');
+  header('location:../petugas/staff_home.php');
 }
 
 if (isset($_POST['login'])) {
@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
   <meta name="description" content="" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,25 +51,25 @@ if (isset($_POST['login'])) {
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
   <!-- Icons. Uncomment required icon fonts -->
-  <link rel="stylesheet" href="../../../assets/vendor/fonts/boxicons.css" />
+  <link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
 
   <!-- Core CSS -->
-  <link rel="stylesheet" href="../../../assets/vendor/css/core.css" class="template-customizer-core-css" />
-  <link rel="stylesheet" href="../../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-  <link rel="stylesheet" href="../../../assets/css/demo.css" />
+  <link rel="stylesheet" href="../../assets/vendor/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="../../assets/css/demo.css" />
 
   <!-- Vendors CSS -->
-  <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
   <!-- Page CSS -->
   <!-- Page -->
-  <link rel="stylesheet" href="../../../assets/vendor/css/pages/page-auth.css" />
+  <link rel="stylesheet" href="../../assets/vendor/css/pages/page-auth.css" />
   <!-- Helpers -->
-  <script src="../../../assets/vendor/js/helpers.js"></script>
+  <script src="../../assets/vendor/js/helpers.js"></script>
 
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-  <script src="../../../assets/js/config.js"></script>
+  <script src="../../assets/js/config.js"></script>
 </head>
 
 <body>
@@ -85,9 +85,9 @@ if (isset($_POST['login'])) {
             <div class="app-brand justify-content-center">
               <a href="index.html" class="app-brand-link">
                 <span>
-                  <i class="menu-icon tf-icons bx bx-book-content"></i>
+                  <i class="menu-icon tf-icons bx bx-book-content bx-md"></i>
                 </span>
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+                <span class="app-brand-text demo menu-text fw-bolder">Library</span>
               </a>
             </div>
             <!-- /Logo -->

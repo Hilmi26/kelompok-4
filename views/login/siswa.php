@@ -1,10 +1,13 @@
+<!-- Zacky -->
 <?php
-include("../../config/connection.php");
 session_start();
 
-// if (isset($_SESSION['nis'])) {
-//   header("Location:student_home.php");
-// }
+include("../../config/connection.php");
+
+
+if ($_SESSION) {
+  header("location:../siswa/student_home.php");
+}
 
 if (isset($_POST['login'])) {
 
@@ -78,9 +81,9 @@ if (isset($_POST['login'])) {
             <div class="app-brand justify-content-center">
               <a href="index.html" class="app-brand-link">
                 <span>
-                  <i class="menu-icon tf-icons bx bx-book-content"></i>
+                  <i class="menu-icon tf-icons bx bx-book-content bx-md"></i>
                 </span>
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+                <span class="app-brand-text demo menu-text fw-bolder">Library</span>
               </a>
             </div>
             <!-- /Logo -->
@@ -101,7 +104,7 @@ if (isset($_POST['login'])) {
                 <button class="btn btn-warning d-grid w-100" type="submit" name="login">Sign in</button>
               </div>
               <div class="mb-3">
-                <button class="btn btn-danger d-grid w-100" type="submit">Back</button>
+                <a class="btn btn-danger d-grid w-100" type="button" href="../../index.php">Back</a>
               </div>
             </form>
           </div>

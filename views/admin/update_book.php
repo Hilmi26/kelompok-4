@@ -69,9 +69,9 @@ if (isset($_POST['update'])) {
                 <div class="app-brand demo ">
                     <a href="index.html" class="app-brand-link">
                         <span>
-                            <i class="menu-icon tf-icons bx bx-book-content"></i>
+                            <i class="menu-icon tf-icons bx bx-book-content bx-sm"></i>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Library</span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-1">Library</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -198,57 +198,57 @@ if (isset($_POST['update'])) {
                         <!-- Bordered Table -->
                         <div class="card">
                             <div class="card-body">
-							<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Penulis</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="text" name="penulis" value="<?= $data['penulis'] ?>">
-                                        </div>
+                                <div class="mb-3 row">
+                                    <label for="html5-text-input" class="col-md-2 col-form-label">Penulis</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="text" name="penulis" value="<?= $data['penulis'] ?>">
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Tahun</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="number" name="tahun" value="<?= $data['tahun'] ?>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="html5-text-input" class="col-md-2 col-form-label">Tahun</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="number" name="tahun" value="<?= $data['tahun'] ?>">
                                     </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Judul</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="text" name="judul" value="<?= $data['judul'] ?>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="html5-text-input" class="col-md-2 col-form-label">Judul</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="text" name="judul" value="<?= $data['judul'] ?>">
                                     </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Kota</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="text" name="kota" value="<?= $data['kota'] ?>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="html5-text-input" class="col-md-2 col-form-label">Kota</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="text" name="kota" value="<?= $data['kota'] ?>">
                                     </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Penerbit</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="text" name="penerbit" value="<?= $data['penerbit'] ?>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="html5-text-input" class="col-md-2 col-form-label">Penerbit</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="text" name="penerbit" value="<?= $data['penerbit'] ?>">
                                     </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Cover</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="image" name="cover" value="<?= $data['cover'] ?>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="html5-text-input" class="col-md-2 col-form-label">Cover</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="image" name="cover" value="<?= $data['cover'] ?>">
                                     </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Sinopsis</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="text" name="sinopsis" value="<?= $data['sinopsis'] ?>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="html5-text-input" class="col-md-2 col-form-label">Sinopsis</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="text" name="sinopsis" value="<?= $data['sinopsis'] ?>">
                                     </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Stok</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="number" name="stok" value="<?= $data['stok'] ?>">
-                                        </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="html5-text-input" class="col-md-2 col-form-label">Stok</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="number" name="stok" value="<?= $data['stok'] ?>">
                                     </div>
-                                    <div class="mt-4 me-auto">
-                                        <button type="submit" name="submit" class="btn btn-outline-primary">Edit</button>
-                                    </div>
+                                </div>
+                                <div class="mt-4 me-auto">
+                                    <button type="submit" name="submit" class="btn btn-outline-primary">Edit</button>
+                                </div>
                                 </form>
                             </div>
                         </div>
