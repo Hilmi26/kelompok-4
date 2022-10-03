@@ -124,7 +124,7 @@ if (isset($_POST['submit'])) {
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -133,12 +133,12 @@ if (isset($_POST['submit'])) {
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <small class="text-muted">Staff</small>
                                                 </div>
                                             </div>
                                         </a>
@@ -189,22 +189,22 @@ if (isset($_POST['submit'])) {
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4">
-                            <span class="text-muted fw-light">Books /</span> Add Data Book
+                            <span class="text-muted fw-light">Peminjaman /</span> Tambah Data Peminjaman
                         </h4>
                         <!-- Bordered Table -->
                         <div class="card">
                             <div class="card-body">
                                 <form action="" method="post">
+                                <div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Nama Petugas</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="nama_petugas">
+                                        </div>
+                                    </div>
                                     <div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">ID Peminjaman</label>
                                         <div class="col-md-10">
                                             <input class="form-control" type="text" name="id_peminjaman">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Judul Buku</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="number" name="nis">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -219,10 +219,10 @@ if (isset($_POST['submit'])) {
                                             <input class="form-control" type="text" name="nama_siswa">
                                         </div>
                                     </div>
-									<div class="mb-3 row">
-                                        <label for="html5-text-input" class="col-md-2 col-form-label">Nama Petugas</label>
+                                    <div class="mb-3 row">
+                                        <label for="html5-text-input" class="col-md-2 col-form-label">Judul Buku</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" name="nama_petugas">
+                                            <input class="form-control" type="number" name="judul">
                                         </div>
                                     </div>
 									<div class="mb-3 row">
@@ -234,7 +234,7 @@ if (isset($_POST['submit'])) {
 									<div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">TGL Peminjaman</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="image" name="tgl_peminjaman">
+                                            <input class="form-control" type="text" name="tgl_peminjaman">
                                         </div>
                                     </div>
 									<div class="mb-3 row">
@@ -251,6 +251,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="mt-4 me-auto">
                                         <button type="submit" name="submit" class="btn btn-outline-primary">Tambah</button>
+                                        <a href="peminjaman.php" type="button" name="submit" class="btn btn-outline-danger">Kembali</a>
                                     </div>
                                 </form>
                             </div>

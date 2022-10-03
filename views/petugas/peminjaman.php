@@ -187,7 +187,7 @@ include '../../config/connection.php';
 							<div class="card-body">
 							<div class="row">
 									<div class="col">
-										<a href="create_book.php" class="btn btn-outline-primary ">Tambah Peminjaman</a>
+										<a href="create_pinjam.php" class="btn btn-outline-primary ">Tambah Peminjaman</a>
 									</div>
 									<div class="col mb-4">
 										<form class="d-flex" role="search" method="POST" action="">
@@ -226,7 +226,7 @@ include '../../config/connection.php';
 											peminjaman.id_petugas = petugas.nip
 											AND siswa.id_kelas = kelas.id_kelas
 											AND detail_peminjaman.id_buku = buku.id_buku");
-											// $ambil = display('petugas');
+
 											if (mysqli_num_rows($query)) {
 												while ($data = mysqli_fetch_array($query)) {
 											?>
