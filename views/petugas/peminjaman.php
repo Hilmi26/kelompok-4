@@ -193,13 +193,10 @@ include '../../config/connection.php';
 										<form class="d-flex" role="search" method="POST" action="">
 											<input class="form-control me-2" type="text" name="search" placeholder="Masukkan Keyword Pencarian">
 											<input class="btn btn-outline-info" type="submit" name="cari" value="Cari"></input>
-											<a href="index.php" class="btn btn-outline-warning ms-2">Refresh</a>
+											<a href="peminjaman.php" class="btn btn-outline-warning ms-2">Refresh</a>
 										</form>
 									</div>
 									</div>
-								<!-- <div class="mb-4">
-									<a href="create_pinjam.php" class="btn btn-outline-primary">Tambah Data</a>
-								</div> -->
 								<div class="table-responsive text-nowrap">
 									<table class="table table-bordered">
 										<thead>
@@ -209,23 +206,25 @@ include '../../config/connection.php';
 												<th>Kelas</th>
 												<th>Judul Buku</th>
 												<th>Petugas</th>
+												<th>Status</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
-											$query = mysqli_query($conn, "SELECT peminjaman.id_peminjaman,
+											$query = mysqli_query($conn, "SELECT
+											peminjaman.id_peminjaman,
 											siswa.nis,
 											siswa.nama_siswa,
 											kelas.nama_kelas,
 											buku.judul,
-											peminjaman.tgl_peminjaman,
-											peminjaman.tgl_pengembalian,																			petugas.nama_petugas
+											petugas.nama_petugas
 											FROM peminjaman, siswa, petugas, kelas, buku, detail_peminjaman
-											WHERE peminjaman.id_siswa = siswa.nis AND
-											peminjaman.id_petugas = petugas.nip
+											WHERE peminjaman.id_siswa = siswa.nis 
+											AND peminjaman.id_petugas = petugas.nip
 											AND siswa.id_kelas = kelas.id_kelas
-											AND detail_peminjaman.id_buku = buku.id_buku");
+											AND buku.id_buku = detail_peminjaman.id_buku
+											AND peminjaman.id_peminjaman = detail_peminjaman.id_peminjaman");
 
 											if (mysqli_num_rows($query)) {
 												while ($data = mysqli_fetch_array($query)) {
@@ -236,7 +235,7 @@ include '../../config/connection.php';
 														<td><?= $data['nama_kelas'] ?></td>
 														<td><?= $data['judul'] ?></td>
 														<td><?= $data['nama_petugas'] ?></td>
-														
+														<td><span class="text-danger">Belum Kembali</button></td>
 														<td colspan="2">
 															<a class="btn btn-icon btn-outline-warning" href="detail_peminjaman.php?id=<?php echo $data['nis']; ?>">
 																<i class='bx bx-detail'></i>

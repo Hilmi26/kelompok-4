@@ -1,16 +1,16 @@
 <!-- Hilmi -->
 
 <?php
-include '../../controllers/admin/function_books.php';
+include '../../controllers/staff/function_peminjaman.php';
 
 if (isset($_POST['submit'])) {
 
-    if (create($_POST) > 0) {
+    if (insert($_POST) > 0) {
         echo "<script>alert('Data telah tersimpan');
-		document.location='table_books.php'</script>";
+		document.location='peminjaman.php'</script>";
     } else {
         echo "<script>alert('Gagal');
-		document.location='table_books.php'</script>";
+		document.location='create_peminjaman.php'</script>";
     }
 }
 ?>
@@ -246,7 +246,7 @@ if (isset($_POST['submit'])) {
 									<div class="mb-3 row">
                                         <label for="html5-text-input" class="col-md-2 col-form-label">Jumlah</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="number" name="stok">
+                                            <input class="form-control" type="number" name="kuantitas">
                                         </div>
                                     </div>
                                     <div class="mt-4 me-auto">

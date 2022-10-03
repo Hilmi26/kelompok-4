@@ -187,16 +187,23 @@ include '../../config/connection.php';
 							<div class="card-body">
 								<?php
 								$query = mysqli_query($conn, "SELECT peminjaman.id_peminjaman,
-										siswa.nis,
-										siswa.nama_siswa,
-										kelas.nama_kelas,
-										petugas.nama_petugas,
-										peminjaman.tgl_peminjaman,
-										peminjaman.tgl_pengembalian
-										FROM peminjaman, siswa, petugas, kelas 
-										WHERE peminjaman.id_siswa = siswa.nis AND
-										peminjaman.id_petugas = petugas.nip
-										AND siswa.id_kelas = kelas.id_kelas");
+									siswa.nis,
+									siswa.nama_siswa,
+									kelas.nama_kelas,
+									buku.judul,
+									buku.cover,
+									peminjaman.tgl_peminjaman,
+									peminjaman.tgl_pengembalian,
+									petugas.nama_petugas,
+									detail_peminjaman.kuantitas
+									FROM peminjaman, siswa, petugas, kelas, buku, detail_peminjaman
+									WHERE peminjaman.id_siswa = siswa.nis 
+									AND peminjaman.id_petugas = petugas.nip
+									AND siswa.id_kelas = kelas.id_kelas
+									AND buku.id_buku = detail_peminjaman.id_buku
+									AND peminjaman.id_peminjaman = detail_peminjaman.id_peminjaman
+									AND peminjaman.id_siswa = $_GET[id];
+									");
 
 								if (mysqli_num_rows($query)) {
 									while ($data = mysqli_fetch_array($query)) {
@@ -240,11 +247,6 @@ include '../../config/connection.php';
 															<td><label>Kelas</label></td>
 															<td>: <?= $data['nama_kelas'] ?></td>
 														</tr>
-
-												<?php
-											}
-										}
-												?>
 													</tbody>
 												</table>
 											</div>
@@ -259,7 +261,6 @@ include '../../config/connection.php';
 											<table class="table table-bordered">
 												<thead>
 													<tr class="text-center">
-
 														<th>Cover</th>
 														<th>Judul Buku</th>
 														<th>Jumlah</th>
@@ -267,39 +268,23 @@ include '../../config/connection.php';
 													</tr>
 												</thead>
 												<tbody>
-													<?php
-													$query = mysqli_query($conn, "SELECT detail_peminjaman.id_detail_peminjaman,
-														peminjaman.id_peminjaman,
-														buku.cover,
-														buku.judul,
-														detail_peminjaman.kuantitas,
-														peminjaman.tgl_peminjaman,
-														peminjaman.tgl_pengembalian
-														FROM detail_peminjaman, buku, peminjaman
-														WHERE detail_peminjaman.id_buku = buku.id_buku
-														AND detail_peminjaman.id_peminjaman = peminjaman.id_peminjaman 	
-														");
-													// $ambil = display('petugas');
-													if (mysqli_num_rows($query)) {
-														while ($data = mysqli_fetch_array($query)) {
-													?>
-															<tr>
-																<td><?= $data['cover'] ?></td>
-																<td><?= $data['judul'] ?></td>
-																<td class="text-center"><?= $data['kuantitas'] ?></td>
-																<td class="text-center" colspan="2">
-																	<a class="btn btn-icon btn-outline-warning" href="detail_peminjaman.php?id=<?php echo $data['id_peminjaman']; ?>">
-																		<i class='bx bx-detail'></i>
-																	</a>
-																	<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['id_peminjaman']; ?>">
-																		<i class='bx bx-trash'></i>
-																	</a>
-																</td>
-															</tr>
-													<?php
-														}
-													}
-													?>
+													<tr>
+														<td><?= $data['cover'] ?></td>
+														<td><?= $data['judul'] ?></td>
+														<td class="text-center"><?= $data['kuantitas'] ?></td>
+														<td class="text-center" colspan="2">
+															<a class="btn btn-icon btn-outline-warning" href="detail_peminjaman.php?id=<?php echo $data['id_peminjaman']; ?>">
+																<i class='bx bx-detail'></i>
+															</a>
+															<a class="btn btn-icon btn-outline-danger" href="delete_staff.php?nip=<?php echo $data['id_peminjaman']; ?>">
+																<i class='bx bx-trash'></i>
+															</a>
+														</td>
+													</tr>
+											<?php
+										}
+									}
+											?>
 												</tbody>
 											</table>
 										</div>

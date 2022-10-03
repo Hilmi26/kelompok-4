@@ -15,25 +15,28 @@ function insert($data)
 {
 	global $conn;
 
-	$petugas = $data['nama_petugas'];
 	$id_peminjaman = $data['id_peminjaman'];
 	$nis = $data['nis'];
-	$siswa = $data['nama_siswa'];
-	$judul = $data['data'];
-	$penerbit = $data['penerbit'];
+	$petugas = $data['nama_petugas'];
 	$tgl_peminjaman = $data['tgl_peminjaman'];
 	$tgl_pengembalian = $data['tgl_pengembalian'];
-	$jumlah = $data['jumlah'];
+	$judul = $data['judul'];
+	$jumlah = $data['kuantitas'];
 
-	// $tambah = mysqli_query($db,"INSERT INTO peminjaman VALUES('','$siswa','$petugas','$tanggal','$tanggal1')");
-    //       $select = mysqli_query($db,"SELECT * FROM peminjaman ORDER BY id_peminjaman DESC");
-    //       $data = mysqli_fetch_assoc($select);
-    //         $tambah2 = mysqli_query($db,"INSERT INTO detail_peminjaman VALUES ('','$buku','$data[id_peminjaman]','$kuantitas')");
+	$query_p = "INSERT INTO peminjaman
+	(id_peminjaman, id_siswa, id_petugas, tgl_peminjaman, tgl_pengembalian)
+	VALUES ('$id_peminjaman', '$nis', '$petugas', '$tgl_peminjaman', '$tgl_pengembalian')";
+	// var_dump($query_p);
+	mysqli_query($conn, $query_p);
+	
+	$select = "SELECT * FROM peminjaman ORDER BY id_peminjaman DESC";
+	$cek = mysqli_query($conn, $select);
+	$data1 = mysqli_fetch_assoc($cek);
 
-	// $query_insert = "INSERT INTO peminjaman
-	// VALUE ('', '$penulis', '$tahun', '$judul', '$kota', '$penerbit', '$cover', '$sinopsis', '$stok')";
-
-	// mysqli_query($conn, $query_insert);
+	$query_dp = "INSERT INTO detail_peminjaman 
+	(id_detail_peminjaman,id_buku, id_peminjaman, kuantitas ) VALUES ('', '$judul', '$data1[id_peminjaman]', '$jumlah')";
+	// var_dump($query_dp);
+	mysqli_query($conn, $query_dp);
 
 	return mysqli_affected_rows($conn);
 }
